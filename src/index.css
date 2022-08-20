@@ -1,0 +1,44 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    color: #4f4f4f;
+    cursor: default;
+}
+
+html,
+body,
+#root,
+.page {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-transform: capitalize;
+    margin: 0;
+}
+
+input,
+div {
+    outline: 0;
+}
+
+label {
+    cursor: default;
+}
+label {
+    display: inline-block;
+}
