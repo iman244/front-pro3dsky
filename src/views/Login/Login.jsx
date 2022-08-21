@@ -1,6 +1,11 @@
-import "./login.css";
+import "./b-login.css";
+import "./s-login.css";
 import React, { useEffect, useState } from "react";
 import { LoginFormElements } from "./LoginData";
+
+/* 
+issues: label doesnt work completely
+*/
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -35,7 +40,7 @@ const Login = () => {
 
     return (
         <div className="page page-login page-center">
-            <h1>pro3dsky</h1>
+            <img src="/LogoFinal.png" alt="pro3dskyLogo" className="logo" />
             <div className="wrapper-form">
                 <form>
                     <h2>sign in</h2>
@@ -48,7 +53,8 @@ const Login = () => {
                                     data-name={element.name}
                                     type={element.type}
                                     className="form-control"
-                                    onChange={handleChange}
+                                    onBlur={handleChange}
+                                    placeholder=" "
                                 />
                                 <label htmlFor={element.name}>
                                     {element.label}
@@ -64,7 +70,7 @@ const Login = () => {
                             className="submit-button"
                             disabled={errorEmail || !email}
                         >
-                            submit
+                            sign in
                         </button>
                     </div>
                 </form>

@@ -2,7 +2,7 @@ export const LoginFormElements = [
     {
         id: "inputEmail",
         name: "inputEmail",
-        type: "emal",
+        type: "email",
         label: "enter email",
         errorField: true,
     },
