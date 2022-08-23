@@ -43,3 +43,7 @@ label {
 label {
     display: inline-block;
 }
+
+button {
+    all: unset;
+}

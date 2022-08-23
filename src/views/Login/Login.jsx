@@ -2,6 +2,7 @@ import "./b-login.css";
 import "./s-login.css";
 import React, { useEffect, useState } from "react";
 import { LoginFormElements } from "./LoginData";
+import { Link } from "react-router-dom";
 
 /* 
 issues: label doesnt work completely
@@ -40,7 +41,9 @@ const Login = () => {
 
     return (
         <div className="page page-login page-center">
-            <img src="/LogoFinal.png" alt="pro3dskyLogo" className="logo" />
+            <Link to="/">
+                <img src="/LogoFinal.png" alt="pro3dskyLogo" className="logo" />
+            </Link>
             <div className="wrapper-form">
                 <form>
                     <h2>sign in</h2>

@@ -1,7 +1,7 @@
 /*
 
 page = page-center = page-login --> 
-    logo wrapper-form(400px 40% 520px)
+    logo wrapper-form
                 form -->
                     h2 wrapper-inputs wrapper-submit-button
                                     |
@@ -16,8 +16,7 @@ page = page-center = page-login -->
     align-items: center;
 }
 
-.page-login > .logo {
-    /* position: absolute; */
+.page-login .logo {
     text-align: center;
     width: 200px;
     height: 200px;
@@ -31,9 +30,6 @@ page = page-center = page-login -->
     flex-direction: column;
     justify-items: center;
     align-items: center;
-    /* width: 40%;
-    min-width: 400px;
-    max-width: 520px; */
 }
 
 .page-login form {
