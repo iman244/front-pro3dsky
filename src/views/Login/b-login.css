@@ -105,13 +105,13 @@ page = page-center = page-login -->
     cursor: default;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 768px) {
     .page-login {
         background-color: #eaeceb;
     }
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 768px) {
     .page-login {
         background-color: #eaeceb;
     }

@@ -7,6 +7,10 @@ nav {
     background-color: #fafafa;
 }
 
+.page-width {
+    height: 90vh;
+}
+
 nav a {
     display: inline-block;
 }
@@ -17,6 +21,28 @@ nav .logo {
     z-index: 10;
 }
 
+nav ::placeholder {
+    color: #9e9e9e;
+}
+
+div.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+div.nav-container,
+div.page-width {
+    max-width: 1800px;
+}
+
+div.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 div.searchBar {
     position: relative;
 }
@@ -24,18 +50,14 @@ div.searchBar {
 input.searchBar {
     box-sizing: border-box;
     text-overflow: ellipsis;
-    padding: 10px 86px 10px 24px;
+    padding: 10px 66px 10px 24px;
     background-color: #efeff0;
     border: 1px solid #efeff0;
     height: 48px;
-    font-size: 16px;
+    font-size: 0.975rem;
     color: #000;
     outline: none;
     border-radius: 24px;
-}
-
-nav ::placeholder {
-    color: #9e9e9e;
 }
 
 button.searchBar {
@@ -45,23 +67,32 @@ button.searchBar {
     right: 5%;
 }
 
-@media only screen and (max-width: 700px) {
+div.signOut {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    color: #4182aa;
+    font-size: 0.975rem;
+}
+
+div.signOut:hover {
+    color: #2d5c79;
+}
+
+span.signOut {
+    text-transform: capitalize;
+}
+
+@media only screen and (max-width: 768px) {
     nav {
         gap: 10px;
     }
 
-    nav .logo {
-        width: 20vw;
-    }
-
-    input.searchBar {
-        width: 70vw;
-    }
-}
-
-@media only screen and (min-width: 700px) {
-    nav {
-        gap: 20px;
+    div.nav-container,
+    div.page-width {
+        width: 95vw;
     }
 
     nav .logo {
@@ -69,8 +100,46 @@ button.searchBar {
     }
 
     input.searchBar {
-        min-width: 500px;
+        width: 65vw;
+    }
+
+    .page-width {
+        width: 100vw;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    nav {
+        gap: 20px;
+    }
+
+    div.nav-container,
+    div.page-width {
+        width: 90vw;
+    }
+
+    nav .logo {
+        width: 100px;
+    }
+
+    input.searchBar {
+        min-width: 450px;
         max-width: 600px;
         width: 50vw;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    div.nav-container,
+    div.page-width {
+        min-width: 921px;
+        width: 80vw;
+    }
+}
+@media only screen and (min-width: 1280px) {
+    div.nav-container,
+    div.page-width {
+        min-width: 1024px;
+        width: 70vw;
     }
 }
