@@ -1,0 +1,25 @@
+ul.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+li.sidebar {
+    color: var(--basic);
+    font-weight: 400;
+    cursor: pointer;
+}
+
+li.sidebar:hover {
+    color: var(--basicHover);
+}
+
+span.sidebar {
+    text-transform: capitalize;
+    font-size: large;
+}
+
+i.sidebar {
+    margin-left: 0.5rem;
+    font-size: small;
+}

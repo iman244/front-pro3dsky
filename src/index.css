@@ -4,6 +4,11 @@
     box-sizing: border-box;
 } */
 
+:root {
+    --basic: #4182aa;
+    --basicHover: #145278;
+}
+
 body {
     font-family: "Roboto", sans-serif;
     font-size: 15px;
@@ -50,6 +55,7 @@ label {
     display: inline-block;
 }
 
-button {
+button,
+ul {
     all: unset;
 }
