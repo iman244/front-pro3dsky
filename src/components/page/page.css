@@ -7,8 +7,8 @@ nav {
     background-color: #fafafa;
 }
 
-.page-width {
-    height: 90vh;
+.page-content {
+    height: var(--page-content);
 }
 
 nav a {
@@ -22,7 +22,7 @@ nav img.logo {
 }
 
 nav i.logo {
-    color: #696969;
+    color: var(--navLogo-color);
 }
 
 nav ::placeholder {
@@ -37,7 +37,7 @@ div.nav-container {
 }
 
 div.nav-container,
-div.page-width {
+div.page-content {
     max-width: 1800px;
 }
 
@@ -95,8 +95,7 @@ span.signOut {
         gap: 10px;
     }
 
-    div.nav-container,
-    div.page-width {
+    div.nav-container {
         width: 95vw;
     }
 
@@ -108,7 +107,7 @@ span.signOut {
         width: 65vw;
     }
 
-    .page-width {
+    .page-content {
         width: 100vw;
     }
 }
@@ -118,9 +117,13 @@ span.signOut {
         gap: 20px;
     }
 
+    div.nav-container {
+        padding: 0 var(--navPadding);
+    }
+
     div.nav-container,
-    div.page-width {
-        width: 90vw;
+    div.page-content {
+        width: 100vw;
     }
 
     nav img.logo {
@@ -134,17 +137,17 @@ span.signOut {
     }
 }
 
-@media only screen and (min-width: 1024px) {
+/* @media only screen and (min-width: 1024px) {
     div.nav-container,
-    div.page-width {
+    div.page-content {
         min-width: 921px;
-        width: 80vw;
+        width: 100vw;
     }
 }
 @media only screen and (min-width: 1280px) {
     div.nav-container,
-    div.page-width {
+    div.page-content {
         min-width: 1024px;
-        width: 70vw;
+        width: 100vw;
     }
-}
+} */

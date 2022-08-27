@@ -3,3 +3,44 @@ div.content.main {
     flex-direction: column;
     gap: 3vw;
 }
+
+div.wrapper.cardList {
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+    padding: 1vw;
+}
+
+div.grid-container {
+    width: fit-content;
+    display: grid;
+    gap: 30px;
+}
+
+div.card {
+    box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.07);
+}
+
+@media only screen and (max-width: 576px) {
+    div.grid-container {
+        grid-template-columns: var(--card-smallScreen-width);
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    div.grid-container {
+        grid-template-columns: var(--card-mediumScreen-width) var(
+                --card-mediumScreen-width
+            );
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    div.grid-container {
+        grid-template-columns:
+            var(--card-largeScreen-width) var(--card-largeScreen-width) var(
+                --card-largeScreen-width
+            )
+            var(--card-largeScreen-width);
+    }
+}

@@ -5,8 +5,19 @@
 } */
 
 :root {
+    --navLogo-color: #696969;
+    --navPadding: 15px;
+
+    --page-content: 90vh;
+
     --basic: #4182aa;
     --basicHover: #145278;
+
+    --card-desc-fontColor: #aaa;
+    --cardDownload: #f7f7f7;
+    --card-smallScreen-width: 80vw;
+    --card-mediumScreen-width: 40vw;
+    --card-largeScreen-width: 15vw;
 }
 
 body {
@@ -56,6 +67,7 @@ label {
 }
 
 button,
-ul {
+ul,
+li {
     all: unset;
 }

@@ -59,7 +59,7 @@ const Page = ({ content }) => {
                     </div>
                 </div>
             </nav>
-            <div className="page-width">{content}</div>
+            <div className="page-content">{content}</div>
         </>
     );
 };
