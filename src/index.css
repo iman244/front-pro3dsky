@@ -16,8 +16,8 @@
     --card-desc-fontColor: #aaa;
     --cardDownload: #f7f7f7;
     --card-smallScreen-width: 80vw;
-    --card-mediumScreen-width: 40vw;
-    --card-largeScreen-width: 15vw;
+    --card-mediumScreen-width: calc((100vw - 165px - 4 * 30px - 1vw) / 2);
+    --card-largeScreen-width: calc((100vw - 165px - 4 * 30px - 1vw) / 4);
 }
 
 body {

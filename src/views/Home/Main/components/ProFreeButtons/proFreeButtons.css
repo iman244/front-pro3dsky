@@ -1,3 +1,11 @@
+div.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vw;
+    gap: 1rem;
+}
+
 div.proFreeButtons {
     display: flex;
     gap: 1rem;

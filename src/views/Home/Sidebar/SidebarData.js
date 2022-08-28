@@ -1,38 +1,47 @@
 export const sidebarList = [
     {
         id: 1,
-        name: "architecture",
+        value: "architecture",
+        label: "architecture",
     },
     {
         id: 2,
-        name: "furniture",
+        value: "furniture",
+        label: "furniture",
     },
     {
         id: 3,
-        name: "decoration",
+        value: "decoration",
+        label: "decoration",
     },
     {
         id: 4,
-        name: "material",
+        value: "material",
+        label: "material",
     },
     {
         id: 5,
-        name: "lighting",
+        value: "lighting",
+        label: "lighting",
     },
     {
         id: 6,
-        name: "kitchen",
+        value: "kitchen",
+        label: "kitchen",
     },
     {
         id: 7,
-        name: "bathroom",
+        value: "bathroom",
+        label: "bathroom",
     },
     {
         id: 8,
-        name: "plants",
+        value: "plants",
+        label: "plants",
     },
     {
         id: 9,
-        name: "other",
+        value: "other",
+        label: "other",
     },
 ];

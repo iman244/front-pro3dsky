@@ -1,12 +1,21 @@
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 576px) {
     div.container.sidebar {
+        display: none;
+    }
+
+    div.page.home {
+        justify-content: center;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    div.sidebarOptions {
         display: none;
     }
 }
 
 div.page.home {
     display: flex;
-    justify-content: center;
 }
 
 div.sidebar.container {
