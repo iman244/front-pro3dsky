@@ -33,8 +33,6 @@ page = page-center = page-login -->
 }
 
 .page-login form {
-    /* box-sizing: border-box;
-    width: 100%; */
     font-size: 16px;
     line-height: 150%;
     border-radius: 4px;
@@ -124,6 +122,5 @@ page = page-center = page-login -->
         box-shadow: 0 0 4px #0000001a;
         border-radius: 4px;
         background-color: #fff;
-        /* padding: 48px 60px 56px; */
     }
 }

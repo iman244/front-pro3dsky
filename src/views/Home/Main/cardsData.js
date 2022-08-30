@@ -19,4 +19,9 @@ export let cardsData = [
         src: ["dummy2.jpeg"],
         desc: "description 2",
     },
+    {
+        id: 5,
+        src: ["dummy3.jpeg"],
+        desc: "description 3",
+    },
 ];

@@ -13,7 +13,11 @@ const Main = () => {
                     {cardsData.map((card) => {
                         return (
                             <div className="card" key={card.id}>
-                                <Card src={card.src} desc={card.desc} />
+                                <Card
+                                    id={card.id}
+                                    src={card.src}
+                                    desc={card.desc}
+                                />
                             </div>
                         );
                     })}

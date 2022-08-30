@@ -43,10 +43,8 @@
 }
 
 .card img.multiImg {
-    width: 40%;
-    height: 40%;
-    max-width: 60px;
-    max-height: 60px;
+    width: 60px;
+    height: 60px;
     object-fit: cover;
 
     border-radius: 50%;
@@ -65,6 +63,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .card span.desc {
@@ -82,39 +81,4 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.card button.download {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-
-    background-color: var(--cardDownload);
-    border: 2px solid var(--basic);
-    border-radius: 8px;
-
-    cursor: pointer;
-    padding: 0.3rem 0.6rem;
-
-    transition: background-color 0.1s ease-out;
-}
-
-.card span.download {
-    text-transform: capitalize;
-    font-size: small;
-    font-weight: 500;
-}
-
-.card i.download {
-    color: var(--basic);
-}
-
-.card button.download:hover {
-    background-color: var(--basic);
-}
-
-.card button.download:hover span.download,
-.card button.download:hover i.download {
-    color: white;
 }

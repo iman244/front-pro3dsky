@@ -1,8 +1,10 @@
 import React, { useCallback, useState } from "react";
+import { Link } from "react-router-dom";
 import ImageViewer from "react-simple-image-viewer";
+import DownloadButton from "../../../../../components/Buttons/DownloadButton";
 import "./card.css";
 
-const CardImg = ({ src, desc }) => {
+const CardImg = ({ id, src, desc }) => {
     const [currentImage, setCurrentImage] = useState(0);
     const [isViewerOpen, setIsViewerOpen] = useState(false);
 
@@ -37,14 +39,13 @@ const CardImg = ({ src, desc }) => {
                     </div>
                 </div>
             </div>
-            <div className="desc">
-                <span className="desc">{desc}</span>
-            </div>
+            <Link to={`${id}`}>
+                <div className="desc">
+                    <span className="desc">{desc}</span>
+                </div>
+            </Link>
             <div className="download">
-                <button className="download">
-                    <span className="download">download</span>
-                    <i className="fa fa-download download"></i>
-                </button>
+                <DownloadButton />
             </div>
             {isViewerOpen && (
                 <ImageViewer

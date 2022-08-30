@@ -1,14 +1,18 @@
 nav {
+    box-sizing: border-box;
+    position: fixed;
     width: 100vw;
     height: 10vh;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #fafafa;
+    z-index: 1000;
 }
 
 .page-content {
     height: var(--page-content);
+    padding: 2vh 0;
 }
 
 nav a {
@@ -19,6 +23,7 @@ nav img.logo {
     text-align: center;
     object-fit: contain;
     z-index: 10;
+    cursor: pointer;
 }
 
 nav i.logo {
@@ -97,6 +102,7 @@ span.signOut {
 
     div.nav-container {
         width: 95vw;
+        padding: var(--navPadding) 0;
     }
 
     nav img.logo {
