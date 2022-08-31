@@ -11,7 +11,9 @@ nav {
 }
 
 .page-content {
+    box-sizing: border-box;
     height: var(--page-content);
+    margin-top: 10vh;
     padding: 2vh 0;
 }
 
