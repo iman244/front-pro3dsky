@@ -1,85 +1,72 @@
 import "./b-login.css";
 import "./s-login.css";
-import React, { useEffect, useState } from "react";
-import { LoginFormElements } from "./LoginData";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Form from "../../components/Form/Form";
+import { useForm } from "react-hook-form";
+import { LoginServiceContext } from "../../tools/LoginService";
 
-/* 
-issues: label doesnt work completely
-*/
+const FormFields = [
+  {
+    id: "username",
+    type: "text",
+    name: "username",
+    required: true,
+    error: "please enter username",
+  },
+  {
+    id: "password",
+    type: "password",
+    name: "password",
+    required: true,
+    error: "please enter username",
+  },
+];
 
 const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [errorEmail, setErrorEmail] = useState(null);
+  const { LoginUserFetch, sec } = useContext(LoginServiceContext);
 
-    function isValidEmail(email) {
-        return /\S+@\S+\.\S+/.test(email);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    LoginUserFetch.mutate(data);
+    if (document.cookie) {
+      let access_token = document.cookie.match(
+        /(?<=access_token=)[\s\S]+(?=;*)/
+      )[0];
+      sec.mutate({ access_token });
     }
+  };
 
-    const handleChange = (event) => {
-        const { value } = event.target;
-        const { name } = event.target.dataset;
-        if (name === "inputEmail" && !isValidEmail(value) && value) {
-            setErrorEmail("email is invalid");
-        } else if (name === "inputEmail" || !email) {
-            setErrorEmail(null);
-        }
+  useEffect(() => {});
 
-        switch (name) {
-            case "inputEmail":
-                setEmail(value);
-                break;
-            case "inputPassword":
-                setPassword(value);
-        }
-    };
-
-    useEffect(() => {
-        console.log({ email, password });
-    });
-
-    return (
-        <div className="page page-login page-center">
-            <Link to="/">
-                <img src="/LogoFinal.png" alt="pro3dskyLogo" className="logo" />
-            </Link>
-            <div className="wrapper-form">
-                <form>
-                    <h2>sign in</h2>
-                    <div className="wrapper-inputs">
-                        {LoginFormElements.map((element) => (
-                            <div key={element.id}>
-                                <input
-                                    id={element.id}
-                                    name={element.name}
-                                    data-name={element.name}
-                                    type={element.type}
-                                    className="form-control"
-                                    onBlur={handleChange}
-                                    placeholder=" "
-                                />
-                                <label htmlFor={element.name}>
-                                    {element.label}
-                                </label>
-                                {element.errorField && (
-                                    <div className="error">{errorEmail}</div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                    <div className="wrapper-submit-button">
-                        <button
-                            className="submit-button"
-                            disabled={errorEmail || !email}
-                        >
-                            sign in
-                        </button>
-                    </div>
-                </form>
-            </div>
+  return (
+    <div className="page page-login page-center">
+      <Link to="/">
+        <img src="/LogoFinalCroped.png" alt="pro3dskyLogo" className="logo" />
+      </Link>
+      <div className="wrapper-form">
+        <div className="loginError">
+          {LoginUserFetch.isError ? (
+            <span>you are not authorized</span>
+          ) : (
+            sec.isSuccess &&
+            sec.data.data === false && <span>you are not authorized</span>
+          )}
         </div>
-    );
+        <Form
+          use={{ register, handleSubmit, errors, onSubmit }}
+          fields={FormFields}
+          isLoading={LoginUserFetch.isLoading || sec.isLoading}
+          submitButton="login"
+        />
+      </div>
+    </div>
+  );
 };
 
 export default Login;
