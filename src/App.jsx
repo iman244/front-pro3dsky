@@ -17,35 +17,15 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <LoginService>
         <BrowserRouter>
-          <Routes>
-            <Route element={<ProtectedRoute />}>
-              <Route
-                path="/"
-                element={
-                  <Page
-                    content={
-                      <DesignService>
-                        <Home />
-                      </DesignService>
-                    }
-                  />
-                }
-              />
-              <Route path=":id" element={<Page content={<Product />} />} />
-              <Route
-                path="*"
-                element={
-                  <Page
-                    content={
-                      <DesignService>
-                        <Home />
-                      </DesignService>
-                    }
-                  />
-                }
-              />
-            </Route>
-          </Routes>
+          <DesignService>
+            <Routes>
+              <Route element={<ProtectedRoute />}>
+                <Route path="/" element={<Page content={<Home />} />} />
+                <Route path=":id" element={<Page content={<Product />} />} />
+                <Route path="*" element={<Page content={<Home />} />} />
+              </Route>
+            </Routes>
+          </DesignService>
         </BrowserRouter>
       </LoginService>
     </QueryClientProvider>

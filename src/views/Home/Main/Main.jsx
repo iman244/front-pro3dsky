@@ -7,6 +7,7 @@ import { cardsData } from "./cardsData";
 import ReactPaginate from "react-paginate";
 import { DesignContext } from "../DesignService";
 import LoaderPaginate from "./LoaderPaginate";
+import ReactLoading from "react-loading";
 
 const Main = () => {
   const {
@@ -27,15 +28,26 @@ const Main = () => {
     <div className="content main">
       <ProFreeButtons />
       <div className="cardList wrapper">
-        <div className="grid-container">
-          {cardsData.map((card) => {
-            return (
-              <div className="card" key={card.id}>
-                <Card id={card.id} src={card.src} desc={card.desc} />
-              </div>
-            );
-          })}
-        </div>
+        {isLoading ? (
+          <ReactLoading
+            type={"bars"}
+            color={"gray"}
+            height={"30%"}
+            width={"30%"}
+          />
+        ) : isError ? (
+          <div>Error: {error.message}</div>
+        ) : (
+          <div className="grid-container">
+            {data.designs.map((card) => {
+              return (
+                <div className="card" key={card._id}>
+                  <Card id={card._id} src={card.keyList} desc={card.name} />
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
       <div className="bottom">
         {isLoading ? (

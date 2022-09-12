@@ -3,9 +3,9 @@ import { useQuery } from "react-query";
 
 export const DesignContext = createContext();
 
-const getAllUsersFetch = async (keyword = "", page = 1, limit = 1) => {
+const getDesignsFetch = async (keyword = "", page = 1, limit = 1) => {
   const response = await fetch(
-    `http://${process.env.REACT_APP_NETWORKIP}:3000/users?keyword=${keyword}&page=${page}&limit=${limit}`
+    `http://${process.env.REACT_APP_NETWORKIP}:3000/designs?keyword=${keyword}&page=${page}&limit=${limit}`
   );
   return response.json();
 };
@@ -15,12 +15,13 @@ const DesignService = ({ children }) => {
   const [keyword, setKeyword] = useState("");
   const itemsPerPage = 6;
   const { isLoading, isError, status, error, data } = useQuery(
-    ["users", page, keyword],
-    () => getAllUsersFetch(keyword, page, itemsPerPage)
+    ["designs", page, keyword],
+    () => getDesignsFetch(keyword, page, itemsPerPage),
+    { onSuccess: (data) => console.log(data) }
   );
 
   // data.totalUsers
-  const DesignsCount = status === "success" ? 10 : 10;
+  const DesignsCount = status === "success" ? data.totalDesigns : 1;
 
   useEffect(() => {});
 
