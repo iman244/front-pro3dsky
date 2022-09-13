@@ -1,23 +1,22 @@
 import React, { createContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
-export const DesignContext = createContext();
+export const HomeContext = createContext();
 
-const getDesignsFetch = async (keyword = "", page = 1, limit = 1) => {
+const getDesignsFetch = async (name = "", page = 1, limit = 1) => {
   const response = await fetch(
-    `http://${process.env.REACT_APP_NETWORKIP}:3000/designs?keyword=${keyword}&page=${page}&limit=${limit}`
+    `http://${process.env.REACT_APP_NETWORKIP}:3000/designs?name=${name}&page=${page}&limit=${limit}`
   );
   return response.json();
 };
 
-const DesignService = ({ children }) => {
+const HomeService = ({ children }) => {
   const [page, setPage] = useState(1);
-  const [keyword, setKeyword] = useState("");
+  const [name, setName] = useState("");
   const itemsPerPage = 6;
   const { isLoading, isError, status, error, data } = useQuery(
-    ["designs", page, keyword],
-    () => getDesignsFetch(keyword, page, itemsPerPage),
-    { onSuccess: (data) => console.log(data) }
+    ["designs", page, name],
+    () => getDesignsFetch(name, page, itemsPerPage)
   );
 
   // data.totalUsers
@@ -26,7 +25,7 @@ const DesignService = ({ children }) => {
   useEffect(() => {});
 
   return (
-    <DesignContext.Provider
+    <HomeContext.Provider
       value={{
         isLoading,
         isError,
@@ -37,13 +36,13 @@ const DesignService = ({ children }) => {
         setPage,
         itemsPerPage,
         DesignsCount,
-        keyword,
-        setKeyword,
+        name,
+        setName,
       }}
     >
       {children}
-    </DesignContext.Provider>
+    </HomeContext.Provider>
   );
 };
 
-export default DesignService;
+export default HomeService;

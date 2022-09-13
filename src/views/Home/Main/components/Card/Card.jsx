@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ImageViewer from "react-simple-image-viewer";
 import DownloadButton from "../../../../../components/Buttons/DownloadButton";
 import "./card.css";
+import ImageLoading from "./ImageLoading";
 
 const CardImg = ({ id, src, desc }) => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -20,29 +21,34 @@ const CardImg = ({ id, src, desc }) => {
 
   return (
     <>
-      <div className="imgCard">
-        <img
-          src={`https://${process.env.REACT_APP_BUCKETS3_NAME}.${process.env.REACT_APP_ENDPOINT_URL}/${src[0]}`}
-          alt=""
-          className="imgCard"
-        />
-        <div className="showHide">
-          <div className="multiImg">
-            <div className="container">
-              {src.map((imgSrc, index) => {
-                return (
-                  <img
-                    src={`https://${process.env.REACT_APP_BUCKETS3_NAME}.${process.env.REACT_APP_ENDPOINT_URL}/${imgSrc}`}
-                    alt=""
-                    className="multiImg"
-                    onClick={() => openImageViewer(index)}
-                  />
-                );
-              })}
+      <Link to={`${id}`}>
+        <div className="imgCard">
+          <ImageLoading
+            src={`https://${process.env.REACT_APP_BUCKETS3_NAME}.${process.env.REACT_APP_ENDPOINT_URL}/${src[0]}`}
+            alt=""
+            className="imgCard"
+          />
+          <div className="showHide">
+            <div className="multiImg">
+              <div className="container">
+                {src.map((imgSrc, index) => {
+                  return (
+                    <img
+                      src={`https://${process.env.REACT_APP_BUCKETS3_NAME}.${process.env.REACT_APP_ENDPOINT_URL}/${imgSrc}`}
+                      alt="product"
+                      className="multiImg"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        openImageViewer(index);
+                      }}
+                    />
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </Link>
       <Link to={`${id}`}>
         <div className="desc">
           <span className="desc">{desc}</span>
@@ -62,6 +68,7 @@ const CardImg = ({ id, src, desc }) => {
           disableScroll={false}
           backgroundStyle={{
             backgroundColor: "rgba(0,0,0,0.8)",
+            zIndex: "5000",
           }}
           closeOnClickOutside={true}
         />

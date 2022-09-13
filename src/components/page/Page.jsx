@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { DesignContext } from "../../views/Home/DesignService";
+import { HomeContext } from "../../Services/HomeService";
 import Search from "../svg/Search";
 import "./page.css";
 
 const Page = ({ content }) => {
   const [viewPortSizeSmall, setViewPortSizeSmall] = useState(true);
-  const { keyword, setKeyword } = useContext(DesignContext);
+  const { name, setName } = useContext(HomeContext);
 
   const handleView = () => {
     if (window.innerWidth <= 768) {
@@ -37,7 +37,7 @@ const Page = ({ content }) => {
       alert("Your session is expired! please login again");
       window.location.reload();
     }
-  });
+  }, [document.cookie]);
 
   return (
     <>
@@ -59,8 +59,8 @@ const Page = ({ content }) => {
               <input
                 className="searchBar"
                 placeholder="Search 3D models, textures, materials..."
-                value={keyword}
-                onChange={(event) => setKeyword(event.target.value)}
+                value={name}
+                onChange={(event) => setName(event.target.value)}
               />
               <button className="searchBar">
                 <Search />

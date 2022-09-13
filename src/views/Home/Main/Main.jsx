@@ -5,7 +5,7 @@ import ProFreeButtons from "./components/ProFreeButtons/ProFreeButtons";
 import Card from "./components/Card/Card";
 import { cardsData } from "./cardsData";
 import ReactPaginate from "react-paginate";
-import { DesignContext } from "../DesignService";
+import { HomeContext } from "../../../Services/HomeService";
 import LoaderPaginate from "./LoaderPaginate";
 import ReactLoading from "react-loading";
 
@@ -22,7 +22,7 @@ const Main = () => {
     page,
     keyword,
     setKeyword,
-  } = useContext(DesignContext);
+  } = useContext(HomeContext);
 
   return (
     <div className="content main">
@@ -33,19 +33,20 @@ const Main = () => {
             type={"bars"}
             color={"gray"}
             height={"30%"}
-            width={"30%"}
+            width={"20%"}
           />
         ) : isError ? (
           <div>Error: {error.message}</div>
         ) : (
           <div className="grid-container">
-            {data.designs.map((card) => {
-              return (
-                <div className="card" key={card._id}>
-                  <Card id={card._id} src={card.keyList} desc={card.name} />
-                </div>
-              );
-            })}
+            {data &&
+              data.designs.map((card) => {
+                return (
+                  <div className="card" key={card._id}>
+                    <Card id={card._id} src={card.keyList} desc={card.name} />
+                  </div>
+                );
+              })}
           </div>
         )}
       </div>
