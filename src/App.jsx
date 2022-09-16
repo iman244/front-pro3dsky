@@ -12,11 +12,7 @@ import HomeService from "./Services/HomeService";
 const queryClient = new QueryClient();
 
 /*
-
-sidebar query
-profree icon
-profree button
-
+desc in product page need to be beauty
 */
 
 function App() {
@@ -25,15 +21,34 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <LoginService>
         <BrowserRouter>
-          <HomeService>
-            <Routes>
-              <Route element={<ProtectedRoute />}>
-                <Route path="/" element={<Page content={<Home />} />} />
-                <Route path=":id" element={<Page content={<Product />} />} />
-                <Route path="*" element={<Page content={<Home />} />} />
-              </Route>
-            </Routes>
-          </HomeService>
+          <Routes>
+            <Route element={<ProtectedRoute />}>
+              <Route
+                path="/"
+                element={
+                  <HomeService>
+                    <Page content={<Home />} />
+                  </HomeService>
+                }
+              />
+              <Route
+                path=":id"
+                element={
+                  <HomeService>
+                    <Page content={<Product />} />
+                  </HomeService>
+                }
+              />
+              <Route
+                path="*"
+                element={
+                  <HomeService>
+                    <Page content={<Home />} />
+                  </HomeService>
+                }
+              />
+            </Route>
+          </Routes>
         </BrowserRouter>
       </LoginService>
     </QueryClientProvider>

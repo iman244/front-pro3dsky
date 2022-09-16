@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from "react";
 import "./product.css";
 import { useParams } from "react-router-dom";
-import { cardsData } from "../Home/Main/cardsData";
 import DownloadButton from "../../components/Buttons/DownloadButton";
 import MiniImage from "./MiniImage";
 import ReactSimpleImageViewer from "react-simple-image-viewer";
@@ -10,7 +9,8 @@ import { useEffect } from "react";
 
 const getDesign = async (id) => {
   const response = await fetch(
-    `http://${process.env.REACT_APP_NETWORKIP}:3000/designs/${id}`
+    `http://${process.env.REACT_APP_NETWORKIP}:3000/designs/${id}`,
+    { method: "GET", credentials: "include" }
   );
 
   return response.json();
@@ -52,8 +52,19 @@ const Product = () => {
                   }
                 </div>
                 <div className="descAndDownload">
-                  <div className="desc">
-                    <span className="desc">{data.name}</span>
+                  <div className="detail-container">
+                    <div className="d-wrapper">
+                      <span className="d-label">name:</span>
+                      <span className="d">{data.name}</span>
+                    </div>
+                    <div className="d-wrapper">
+                      <span className="d-label">category:</span>
+                      <span className="d">{data.category}</span>
+                    </div>
+                    <div className="d-wrapper">
+                      <span className="d-label">isPremium:</span>
+                      <span className="d">{`${data.isPremium}`}</span>
+                    </div>
                   </div>
                   <div className="download">
                     <DownloadButton

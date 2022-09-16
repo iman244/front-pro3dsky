@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HomeContext } from "../../Services/HomeService";
 import Search from "../svg/Search";
 import "./page.css";
 
 const Page = ({ content }) => {
+  let navigate = useNavigate();
   const [viewPortSizeSmall, setViewPortSizeSmall] = useState(true);
   const { name, setName } = useContext(HomeContext);
 
@@ -63,7 +64,7 @@ const Page = ({ content }) => {
                 onChange={(event) => setName(event.target.value)}
               />
               <button className="searchBar">
-                <Search />
+                <Search onClick={() => navigate("/")} />
               </button>
             </div>
           </div>

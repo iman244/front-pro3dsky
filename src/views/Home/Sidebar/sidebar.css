@@ -1,25 +1,30 @@
 ul.sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 1rem 0 0 1rem;
 }
 
 li.sidebar {
-    color: var(--basic);
-    font-weight: 400;
-    cursor: pointer;
+  color: var(--basic);
+  font-weight: 400;
+  cursor: pointer;
 }
 
 li.sidebar:hover {
-    color: var(--basicHover);
+  color: var(--basicHover);
+}
+
+li.sidebar.selected {
+  color: gray;
 }
 
 span.sidebar {
-    text-transform: capitalize;
-    font-size: large;
+  text-transform: capitalize;
+  font-size: large;
 }
 
 i.sidebar {
-    margin-left: 0.5rem;
-    font-size: small;
+  margin-left: 0.5rem;
+  font-size: small;
 }

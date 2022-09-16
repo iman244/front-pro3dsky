@@ -40,12 +40,32 @@ div.product.page div.descAndDownload {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 40px;
   width: 18vw;
   max-width: 250px;
 }
 
-div.product.page span.desc {
+div.detail-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+}
+
+div.d-wrapper {
+  display: flex;
+  gap: 5px;
+}
+
+span.d-label {
+  flex: 2;
+}
+
+span.d {
+  flex: 1;
+}
+
+div.product.page span.d-label {
   text-transform: capitalize;
   color: #999;
 }
@@ -67,6 +87,7 @@ div.product.page div.listOfImages {
 @media only screen and (max-width: 576px) {
   div.product.page div.imagePdescDownload {
     flex-direction: column;
+    align-items: center;
   }
 
   div.product.page div.image {

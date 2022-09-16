@@ -3,9 +3,21 @@ import { useQuery } from "react-query";
 
 export const HomeContext = createContext();
 
-const getDesignsFetch = async (name = "", page = 1, limit = 1) => {
+const getDesignsFetch = async (
+  name = "",
+  pro = false,
+  free = false,
+  category = "",
+  page = 1,
+  limit = 1
+) => {
   const response = await fetch(
-    `http://${process.env.REACT_APP_NETWORKIP}:3000/designs?name=${name}&page=${page}&limit=${limit}`
+    `http://${
+      process.env.REACT_APP_NETWORKIP
+    }:3000/designs?name=${name}&isPremium=${
+      pro ? (free ? "" : true) : free ? false : ""
+    }&category=${category}&page=${page}&limit=${limit}`,
+    { method: "GET", credentials: "include" }
   );
   return response.json();
 };
@@ -13,10 +25,13 @@ const getDesignsFetch = async (name = "", page = 1, limit = 1) => {
 const HomeService = ({ children }) => {
   const [page, setPage] = useState(1);
   const [name, setName] = useState("");
+  const [pro, setPro] = useState(false);
+  const [free, setFree] = useState(false);
+  const [category, setCategory] = useState("");
   const itemsPerPage = 6;
   const { isLoading, isError, status, error, data } = useQuery(
-    ["designs", page, name],
-    () => getDesignsFetch(name, page, itemsPerPage)
+    ["designs", page, name, pro, free, category],
+    () => getDesignsFetch(name, pro, free, category, page, itemsPerPage)
   );
 
   // data.totalUsers
@@ -38,6 +53,12 @@ const HomeService = ({ children }) => {
         DesignsCount,
         name,
         setName,
+        pro,
+        setPro,
+        free,
+        setFree,
+        category,
+        setCategory,
       }}
     >
       {children}

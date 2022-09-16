@@ -3,11 +3,11 @@ import "./main.css";
 import "./paginate.css";
 import ProFreeButtons from "./components/ProFreeButtons/ProFreeButtons";
 import Card from "./components/Card/Card";
-import { cardsData } from "./cardsData";
 import ReactPaginate from "react-paginate";
 import { HomeContext } from "../../../Services/HomeService";
 import LoaderPaginate from "./LoaderPaginate";
 import ReactLoading from "react-loading";
+import Error403 from "../../../components/Error403/Error403";
 
 const Main = () => {
   const {
@@ -39,41 +39,44 @@ const Main = () => {
           <div>Error: {error.message}</div>
         ) : (
           <div className="grid-container">
-            {data &&
+            {data && data.statusCode === 403 ? (
+              <Error403 />
+            ) : (
               data.designs.map((card) => {
                 return (
                   <div className="card" key={card._id}>
                     <Card id={card._id} src={card.keyList} desc={card.name} />
                   </div>
                 );
-              })}
+              })
+            )}
           </div>
         )}
-      </div>
-      <div className="bottom">
-        {isLoading ? (
-          <LoaderPaginate />
-        ) : (
-          <ReactPaginate
-            breakLabel="..."
-            nextLabel="forward"
-            onPageChange={(event) => setPage(event.selected + 1)}
-            pageRangeDisplayed={3}
-            pageCount={Math.ceil(DesignsCount / itemsPerPage)}
-            previousLabel="backward"
-            renderOnZeroPageCount={null}
-            pageClassName="page"
-            pageLinkClassName="pagelink"
-            previousClassName="previouse"
-            previousLinkClassName="previouselink"
-            nextClassName="next"
-            nextLinkClassName="nextlink"
-            breakClassName="break"
-            breakLinkClassName="breaklink"
-            containerClassName="container"
-            activeClassName="active"
-          />
-        )}
+        <div className="bottom">
+          {isLoading ? (
+            <LoaderPaginate />
+          ) : (
+            <ReactPaginate
+              breakLabel="..."
+              nextLabel="forward"
+              onPageChange={(event) => setPage(event.selected + 1)}
+              pageRangeDisplayed={3}
+              pageCount={Math.ceil(DesignsCount / itemsPerPage)}
+              previousLabel="backward"
+              renderOnZeroPageCount={null}
+              pageClassName="page"
+              pageLinkClassName="pagelink"
+              previousClassName="previouse"
+              previousLinkClassName="previouselink"
+              nextClassName="next"
+              nextLinkClassName="nextlink"
+              breakClassName="break"
+              breakLinkClassName="breaklink"
+              containerClassName="container"
+              activeClassName="active"
+            />
+          )}
+        </div>
       </div>
     </div>
   );

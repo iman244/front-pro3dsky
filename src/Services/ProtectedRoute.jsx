@@ -26,7 +26,7 @@ const ProtectedRoute = ({ children }) => {
           ) : (
             <Outlet />
           )
-        ) : (
+        ) : sec.isLoading ? (
           <div className="loading">
             <ReactLoading
               type={"bars"}
@@ -35,6 +35,8 @@ const ProtectedRoute = ({ children }) => {
               width={"30%"}
             />
           </div>
+        ) : (
+          <Login />
         )
       ) : (
         <Login />

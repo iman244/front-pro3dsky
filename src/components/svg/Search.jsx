@@ -1,6 +1,6 @@
 import React from "react";
 
-const Search = () => {
+const Search = ({ onClick }) => {
   return (
     <svg
       width="19"
@@ -8,6 +8,7 @@ const Search = () => {
       viewBox="0 0 19 19"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      onClick={onClick}
     >
       <path
         fillRule="evenodd"
