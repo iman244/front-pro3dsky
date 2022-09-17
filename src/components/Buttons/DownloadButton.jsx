@@ -1,12 +1,17 @@
 import React from "react";
 import "./downloadButton.css";
 
-const DownloadButton = ({ buttonStyle }) => {
+const DownloadButton = ({ buttonStyle, downloadLink }) => {
   return (
-    <button className="download" style={buttonStyle}>
+    <a
+      className="download"
+      style={buttonStyle}
+      href={downloadLink}
+      target="_blank"
+    >
       <span className="download">download</span>
       <i className="fa fa-download download"></i>
-    </button>
+    </a>
   );
 };
 

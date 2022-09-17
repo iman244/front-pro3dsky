@@ -11,10 +11,6 @@ import HomeService from "./Services/HomeService";
 
 const queryClient = new QueryClient();
 
-/*
-desc in product page need to be beauty
-*/
-
 function App() {
   const [user, setUser] = useState(1);
   return (

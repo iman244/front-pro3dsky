@@ -1,4 +1,4 @@
-button.download {
+a.download {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,11 +24,11 @@ i.download {
   color: var(--basic);
 }
 
-button.download:hover {
+a.download:hover {
   background-color: var(--basic);
 }
 
-button.download:hover span.download,
-button.download:hover i.download {
+a.download:hover span.download,
+a.download:hover i.download {
   color: white;
 }

@@ -72,6 +72,7 @@ const Product = () => {
                         borderRadius: "3px",
                         padding: "10px 20px",
                       }}
+                      downloadLink={`http://${process.env.REACT_APP_NETWORKIP}:3000/file`}
                     />
                   </div>
                 </div>
