@@ -6,6 +6,9 @@ import MiniImage from "./MiniImage";
 import ReactSimpleImageViewer from "react-simple-image-viewer";
 import { useQuery } from "react-query";
 import { useEffect } from "react";
+import ReactLoading from "react-loading";
+import PageNotFound from "../404/PageNotFound";
+import Error403 from "../../components/Error403/Error403";
 
 const getDesign = async (id) => {
   const response = await fetch(
@@ -16,11 +19,26 @@ const getDesign = async (id) => {
   return response.json();
 };
 
+const getFile = async (id) => {
+  const response = await fetch(
+    `http://${process.env.REACT_APP_NETWORKIP}:3000/file/${id}`,
+    { method: "GET", credentials: "include" }
+  );
+
+  return response.json();
+};
+
 const Product = () => {
   let params = useParams();
-  const design = useQuery("design", () => getDesign(params.id));
+  const { data, isLoading, isError, error } = useQuery(
+    "design",
+    () => getDesign(params.id),
+    {
+      onError: (error) => console.log(error.statusCode),
+    }
+  );
+  const file = useQuery("file", () => getFile(params.id), {});
 
-  const { data } = design;
   const [currentImage, setCurrentImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
 
@@ -34,10 +52,27 @@ const Product = () => {
     setIsViewerOpen(false);
   };
 
-  useEffect(() => {});
+  useEffect(() => {
+    // console.log(file.data.preSignedURL);
+  });
   return (
     <>
-      {data && (
+      {isLoading ? (
+        <div className="loading">
+          <ReactLoading
+            type={"bars"}
+            color={"gray"}
+            height={"30%"}
+            width={"20%"}
+          />
+        </div>
+      ) : isError ? (
+        <div>Error: {error.message}</div>
+      ) : data.statusCode === 400 || data.statusCode === 404 ? (
+        <PageNotFound />
+      ) : data.statusCode === 403 ? (
+        <Error403 />
+      ) : (
         <>
           <div className="page product">
             <div className="product container">
@@ -72,7 +107,9 @@ const Product = () => {
                         borderRadius: "3px",
                         padding: "10px 20px",
                       }}
-                      downloadLink={`http://${process.env.REACT_APP_NETWORKIP}:3000/file/${data._id}`}
+                      downloadLink={
+                        file.isSuccess ? file.data.preSignedURL : "#"
+                      }
                     />
                   </div>
                 </div>

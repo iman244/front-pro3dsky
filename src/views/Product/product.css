@@ -42,7 +42,7 @@ div.product.page div.descAndDownload {
   align-items: center;
   gap: 40px;
   width: 18vw;
-  max-width: 250px;
+  /* max-width: 250px; */
 }
 
 div.detail-container {
@@ -59,15 +59,12 @@ div.d-wrapper {
 
 span.d-label {
   flex: 2;
+  text-transform: capitalize;
+  color: #999;
 }
 
 span.d {
   flex: 1;
-}
-
-div.product.page span.d-label {
-  text-transform: capitalize;
-  color: #999;
 }
 
 div.product.page div.listOfImages {

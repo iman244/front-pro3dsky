@@ -1,15 +1,12 @@
-import React from "react";
-import { useContext } from "react";
-import { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import Login from "../views/Login/Login";
 import { LoginServiceContext } from "./LoginService";
 import ReactLoading from "react-loading";
+import "./reactLoadingCss.css";
+import Login from "../views/Login/Login";
 
 const ProtectedRoute = ({ children }) => {
   const { sec } = useContext(LoginServiceContext);
-
-  useEffect(() => {});
 
   return (
     <>
@@ -26,7 +23,7 @@ const ProtectedRoute = ({ children }) => {
           ) : (
             <Outlet />
           )
-        ) : sec.isLoading ? (
+        ) : (
           <div className="loading">
             <ReactLoading
               type={"bars"}
@@ -35,11 +32,11 @@ const ProtectedRoute = ({ children }) => {
               width={"30%"}
             />
           </div>
-        ) : (
-          <Login />
         )
       ) : (
-        <Login />
+        <>
+          <Login />
+        </>
       )}
     </>
   );
