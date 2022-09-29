@@ -1,18 +1,19 @@
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import ReactLoading from "react-loading";
 
-const ImageLoading = ({ src, alt, className, onClick }) => {
+const ImageLoading = ({ src, alt, className, onClick, height }) => {
   const [loading, setLoading] = useState(true);
-  useEffect(() => {});
   return (
     <>
       <ReactLoading
-        style={{ display: `${loading ? "block" : "none"}` }}
+        style={{
+          display: `${loading ? "block" : "none"}`,
+          height: `${height}`,
+        }}
         type={"blank"}
         color={"gray"}
-        height={"30%"}
+        height={"fit-content"}
         width={"100%"}
       />
 

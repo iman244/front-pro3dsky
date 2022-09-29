@@ -1,13 +1,11 @@
-a.download {
+button.basic-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
-  width: fit-content;
 
-  background-color: var(--cardDownload);
   border: 2px solid var(--basic);
-  border-radius: 3px;
+  border-radius: 8px;
 
   cursor: pointer;
   padding: 0.3rem 0.6rem;
@@ -15,21 +13,16 @@ a.download {
   transition: background-color 0.1s ease-out;
 }
 
-span.download {
+span.basic-btn {
   text-transform: capitalize;
   font-size: small;
   font-weight: 500;
 }
 
-i.download {
-  color: var(--basic);
+button.basic-btn:hover {
 }
 
-a.download:hover {
-  background-color: var(--basic);
-}
-
-a.download:hover span.download,
-a.download:hover i.download {
+button.basic-btn:hover span.basic-btn,
+button.basic-btn:hover i.basic-btn {
   color: white;
 }

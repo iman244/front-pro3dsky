@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AppContext } from "../../Services/AppService";
 import { HomeContext } from "../../Services/HomeService";
 import Search from "../svg/Search";
 import "./page.css";
@@ -9,6 +10,7 @@ const Page = ({ content }) => {
   let navigate = useNavigate();
   const [viewPortSizeSmall, setViewPortSizeSmall] = useState(true);
   const { name, setName } = useContext(HomeContext);
+  const { errorUI, logOut } = useContext(AppContext);
 
   const handleView = () => {
     if (window.innerWidth <= 768) {
@@ -20,9 +22,7 @@ const Page = ({ content }) => {
   window.addEventListener("resize", handleView);
 
   const handleSignOut = () => {
-    document.cookie =
-      "access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    window.location.reload();
+    logOut.mutate();
   };
 
   useEffect(() => {
@@ -34,11 +34,13 @@ const Page = ({ content }) => {
       let access_token = document.cookie.match(
         /(?<=access_token=)[\s\S]+(?=;*)/
       )[0];
+      if (!access_token) {
+        errorUI("cookieProblem");
+      }
     } else {
-      alert("Your session is expired! please login again");
-      window.location.reload();
+      errorUI("cookieProblem");
     }
-  }, [document.cookie]);
+  });
 
   return (
     <>

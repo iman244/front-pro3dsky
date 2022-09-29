@@ -5,14 +5,16 @@ import DownloadButton from "../../components/Buttons/DownloadButton";
 import MiniImage from "./MiniImage";
 import ReactSimpleImageViewer from "react-simple-image-viewer";
 import { useQuery } from "react-query";
-import { useEffect } from "react";
 import ReactLoading from "react-loading";
 import PageNotFound from "../404/PageNotFound";
+import ImageLoading from "../../components/ImageLoading";
 import Error403 from "../../components/Error403/Error403";
+import { useContext } from "react";
+import { AppContext } from "../../Services/AppService";
 
 const getDesign = async (id) => {
   const response = await fetch(
-    `http://${process.env.REACT_APP_NETWORKIP}:3000/designs/${id}`,
+    `http://${process.env.REACT_APP_NETWORKIP}/designs/${id}`,
     { method: "GET", credentials: "include" }
   );
 
@@ -21,7 +23,7 @@ const getDesign = async (id) => {
 
 const getFile = async (id) => {
   const response = await fetch(
-    `http://${process.env.REACT_APP_NETWORKIP}:3000/file/${id}`,
+    `http://${process.env.REACT_APP_NETWORKIP}/file/${id}`,
     { method: "GET", credentials: "include" }
   );
 
@@ -30,17 +32,17 @@ const getFile = async (id) => {
 
 const Product = () => {
   let params = useParams();
+  const { UserLog } = useContext(AppContext);
+  const [currentImage, setCurrentImage] = useState(0);
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
   const { data, isLoading, isError, error } = useQuery(
-    "design",
+    ["design", params.id],
     () => getDesign(params.id),
     {
-      onError: (error) => console.log(error.statusCode),
+      onError: (error) => UserLog("error", `${error.message}`),
     }
   );
   const file = useQuery("file", () => getFile(params.id), {});
-
-  const [currentImage, setCurrentImage] = useState(0);
-  const [isViewerOpen, setIsViewerOpen] = useState(false);
 
   const openImageViewer = useCallback((index) => {
     setCurrentImage(index);
@@ -52,9 +54,6 @@ const Product = () => {
     setIsViewerOpen(false);
   };
 
-  useEffect(() => {
-    // console.log(file.data.preSignedURL);
-  });
   return (
     <>
       {isLoading ? (
@@ -62,8 +61,8 @@ const Product = () => {
           <ReactLoading
             type={"bars"}
             color={"gray"}
-            height={"30%"}
-            width={"20%"}
+            height={"fit-content"}
+            width={"200px"}
           />
         </div>
       ) : isError ? (
@@ -78,13 +77,12 @@ const Product = () => {
             <div className="product container">
               <div className="imagePdescDownload">
                 <div className="image">
-                  {
-                    <img
-                      className="image-index"
-                      src={`https://${process.env.REACT_APP_BUCKETS3_NAME}.${process.env.REACT_APP_ENDPOINT_URL}/${data.keyList[0]}`}
-                      alt="design"
-                    />
-                  }
+                  <ImageLoading
+                    height="100%"
+                    className="image-index"
+                    src={`https://${process.env.REACT_APP_BUCKETS3_NAME}.${process.env.REACT_APP_ENDPOINT_URL}/${data.keyList[0]}`}
+                    alt="design"
+                  />
                 </div>
                 <div className="descAndDownload">
                   <div className="detail-container">
@@ -104,7 +102,6 @@ const Product = () => {
                   <div className="download">
                     <DownloadButton
                       buttonStyle={{
-                        borderRadius: "3px",
                         padding: "10px 20px",
                       }}
                       downloadLink={

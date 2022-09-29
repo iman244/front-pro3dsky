@@ -1,18 +1,21 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { LoginServiceContext } from "./LoginService";
 import ReactLoading from "react-loading";
 import "./reactLoadingCss.css";
 import Login from "../views/Login/Login";
+import { useEffect } from "react";
 
 const ProtectedRoute = ({ children }) => {
   const { sec } = useContext(LoginServiceContext);
 
+  useEffect(() => {});
+
   return (
     <>
       {document.cookie ? (
-        sec.data ? (
-          sec.data.data ? (
+        sec.isSuccess ? (
+          sec.data ? (
             children ? (
               children
             ) : (
@@ -28,13 +31,14 @@ const ProtectedRoute = ({ children }) => {
             <ReactLoading
               type={"bars"}
               color={"gray"}
-              height={"30%"}
-              width={"30%"}
+              height={"fit-content"}
+              width={"200px"}
             />
           </div>
         )
       ) : (
         <>
+          {/* {console.log("we are in 4")} */}
           <Login />
         </>
       )}

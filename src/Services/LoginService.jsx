@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { createContext, useEffect } from "react";
 import { useMutation } from "react-query";
 
@@ -6,18 +5,26 @@ export const LoginServiceContext = createContext();
 
 const LoginService = ({ children }) => {
   const LoginUserFetch = useMutation((data) => {
-    return axios.post(
-      `http://${process.env.REACT_APP_NETWORKIP}:3000/auth/login`,
-      data,
-      {
-        withCredentials: true,
-      }
-    );
-  });
-  const sec = useMutation((data) => {
-    return axios.post(`http://${process.env.REACT_APP_NETWORKIP}:3000/`, data, {
-      withCredentials: true,
+    return fetch(`http://${process.env.REACT_APP_NETWORKIP}/auth/login`, {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
+  });
+
+  const sec = useMutation(async (data) => {
+    let response = await fetch(`http://${process.env.REACT_APP_NETWORKIP}`, {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return await response.json();
   });
 
   useEffect(() => {

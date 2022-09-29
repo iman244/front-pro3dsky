@@ -5,7 +5,6 @@ import ProFreeButtons from "./components/ProFreeButtons/ProFreeButtons";
 import Card from "./components/Card/Card";
 import ReactPaginate from "react-paginate";
 import { HomeContext } from "../../../Services/HomeService";
-import LoaderPaginate from "./LoaderPaginate";
 import ReactLoading from "react-loading";
 import Error403 from "../../../components/Error403/Error403";
 
@@ -15,13 +14,9 @@ const Main = () => {
     isError,
     error,
     data,
-    isFetching,
     setPage,
     itemsPerPage,
     DesignsCount,
-    page,
-    keyword,
-    setKeyword,
   } = useContext(HomeContext);
 
   return (
@@ -32,8 +27,8 @@ const Main = () => {
           <ReactLoading
             type={"bars"}
             color={"gray"}
-            height={"30%"}
-            width={"20%"}
+            height={"fit-content"}
+            width={"200px"}
           />
         ) : isError ? (
           <div>Error: {error.message}</div>
@@ -42,7 +37,7 @@ const Main = () => {
             <div className="grid-container">
               {data && data.statusCode === 403 ? (
                 <Error403 />
-              ) : (
+              ) : data.totalDesigns ? (
                 data.designs.map((card) => {
                   return (
                     <div className="card" key={card._id}>
@@ -50,6 +45,8 @@ const Main = () => {
                     </div>
                   );
                 })
+              ) : (
+                <p>there is no item to show!</p>
               )}
             </div>
           </>
