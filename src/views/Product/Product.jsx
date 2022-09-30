@@ -14,7 +14,7 @@ import { AppContext } from "../../Services/AppService";
 
 const getDesign = async (id) => {
   const response = await fetch(
-    `http://${process.env.REACT_APP_NETWORKIP}/designs/${id}`,
+    `${process.env.REACT_APP_NETWORKIP}/designs/${id}`,
     { method: "GET", credentials: "include" }
   );
 
@@ -23,7 +23,7 @@ const getDesign = async (id) => {
 
 const getFile = async (id) => {
   const response = await fetch(
-    `http://${process.env.REACT_APP_NETWORKIP}/file/${id}`,
+    `${process.env.REACT_APP_NETWORKIP}/file/${id}`,
     { method: "GET", credentials: "include" }
   );
 
