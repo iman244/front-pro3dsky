@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import ImageViewer from "react-simple-image-viewer";
-import DownloadButton from "../../../../components/Buttons/DownloadButton";
+import DownloadButton from "../../../../../components/Buttons/DownloadButton";
+import ImageLoading from "../../../../../components/ImageLoading";
 import "./card.css";
-import ImageLoading from "../../../../components/ImageLoading";
 
 const CardImg = ({ id, src, desc, isPremium }) => {
   const [currentImage, setCurrentImage] = useState(0);
