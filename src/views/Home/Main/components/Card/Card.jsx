@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import ImageViewer from "react-simple-image-viewer";
-import DownloadButton from "../../../../../components/Buttons/DownloadButton";
-import ImageLoading from "../../../../../components/ImageLoading";
+import DownloadButton from "../../../../components/Buttons/DownloadButton";
 import "./card.css";
+import ImageLoading from "../../../../components/ImageLoading";
 
 const CardImg = ({ id, src, desc, isPremium }) => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -35,7 +35,7 @@ const CardImg = ({ id, src, desc, isPremium }) => {
                 {src.map((imgSrc, index) => {
                   return (
                     <img
-                      key={`${imgSrc}`}
+                      key={imgSrc}
                       src={`https://${process.env.REACT_APP_BUCKETS3_NAME}.${process.env.REACT_APP_ENDPOINT_URL}/${imgSrc}`}
                       alt="product"
                       className="multiImg"
@@ -48,11 +48,11 @@ const CardImg = ({ id, src, desc, isPremium }) => {
                 })}
               </div>
             </div>
-            <div className="badge">
-              <span className={isPremium ? "pro" : "free"}>
-                {isPremium ? "pro" : "free"}
-              </span>
-            </div>
+          </div>
+          <div className="badge">
+            <span className={isPremium ? "pro" : "free"}>
+              {isPremium ? "pro" : "free"}
+            </span>
           </div>
         </div>
       </Link>

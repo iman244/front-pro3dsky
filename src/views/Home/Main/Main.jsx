@@ -41,7 +41,12 @@ const Main = () => {
                 data.designs.map((card) => {
                   return (
                     <div className="card" key={card._id}>
-                      <Card id={card._id} src={card.keyList} desc={card.name} />
+                      <Card
+                        id={card._id}
+                        src={card.keyList}
+                        desc={card.name}
+                        isPremium={card.isPremium}
+                      />
                     </div>
                   );
                 })
