@@ -7,16 +7,12 @@ div.product.page {
 
 div.product.container {
   box-sizing: border-box;
-  width: calc((100vw - 150px) * 0.8);
   max-width: 700px;
   padding: 20px;
   height: fit-content;
-  -webkit-box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.3);
-  box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   gap: 20px;
-  background-color: rgb(251, 251, 251);
 }
 
 div.product.page div.imagePdescDownload {
@@ -45,7 +41,8 @@ div.product.page div.descAndDownload {
   align-items: center;
   gap: 40px;
   width: 18vw;
-  /* max-width: 250px; */
+  min-width: 200px;
+  max-width: 350px;
 }
 
 div.detail-container {
@@ -68,6 +65,7 @@ span.d-label {
 }
 
 span.d {
+  word-break: break-all;
 }
 
 div.product.page div.listOfImages {
@@ -81,6 +79,19 @@ div.product.page div.listOfImages {
 @media only screen and (min-width: 768px) {
   div.product.page div.imagePdescDownload {
     flex-direction: row;
+  }
+
+  div.product.container {
+    width: calc((100vw - 150px) * 0.8);
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  div.product.container {
+    width: calc((100vw) * 0.8);
+    -webkit-box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.15);
+    background-color: rgb(251, 251, 251);
   }
 }
 
