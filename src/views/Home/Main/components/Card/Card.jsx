@@ -5,7 +5,7 @@ import DownloadButton from "../../../../../components/Buttons/DownloadButton";
 import ImageLoading from "../../../../../components/ImageLoading";
 import "./card.css";
 
-const CardImg = ({ id, src, desc }) => {
+const CardImg = ({ id, src, desc, isPremium }) => {
   const [currentImage, setCurrentImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
 
@@ -47,6 +47,11 @@ const CardImg = ({ id, src, desc }) => {
                   );
                 })}
               </div>
+            </div>
+            <div className="badge">
+              <span className={isPremium ? "pro" : "free"}>
+                {isPremium ? "pro" : "free"}
+              </span>
             </div>
           </div>
         </div>

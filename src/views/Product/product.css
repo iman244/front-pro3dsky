@@ -6,6 +6,9 @@ div.product.page {
 }
 
 div.product.container {
+  box-sizing: border-box;
+  width: calc((100vw - 150px) * 0.8);
+  max-width: 700px;
   padding: 20px;
   height: fit-content;
   -webkit-box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.3);
@@ -58,13 +61,13 @@ div.d-wrapper {
 }
 
 span.d-label {
-  flex: 2;
+  box-sizing: border-box;
+  width: 80px;
   text-transform: capitalize;
   color: #999;
 }
 
 span.d {
-  flex: 1;
 }
 
 div.product.page div.listOfImages {
