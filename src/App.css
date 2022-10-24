@@ -1,4 +1,18 @@
 .react-simple-image-viewer__next,
 .react-simple-image-viewer__previous {
-  height: fit-content !important;
+    height: fit-content !important;
+}
+::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+    background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cfcfcf;
+    -webkit-border-radius: 0.5ex;
+}
+
+::-webkit-scrollbar-corner {
+    background: #fafafa;
 }
