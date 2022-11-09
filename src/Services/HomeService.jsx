@@ -35,7 +35,9 @@ const HomeService = ({ children }) => {
   // data.totalUsers
   const DesignsCount = status === "success" ? data.totalDesigns : 1;
 
-  useEffect(() => {});
+  useEffect(() => {
+    setPage(1);
+  }, [name, pro, free, category]);
 
   return (
     <HomeContext.Provider

@@ -9,7 +9,7 @@ import "./page.css";
 const Page = ({ content }) => {
   let navigate = useNavigate();
   const [viewPortSizeSmall, setViewPortSizeSmall] = useState(true);
-  const { name, setName } = useContext(HomeContext);
+  const { name, setName, setPage } = useContext(HomeContext);
   const { errorUI, logOut } = useContext(AppContext);
 
   const handleView = () => {
@@ -63,7 +63,9 @@ const Page = ({ content }) => {
                 className="searchBar"
                 placeholder="Search 3D models, textures, materials..."
                 value={name}
-                onChange={(event) => setName(event.target.value)}
+                onChange={(event) => {
+                  setName(event.target.value);
+                }}
               />
               <button className="searchBar">
                 <Search onClick={() => navigate("/")} />
