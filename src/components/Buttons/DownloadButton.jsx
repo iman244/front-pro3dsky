@@ -12,7 +12,7 @@ const DownloadButton = ({ buttonStyle, to, downloadLink, text }) => {
         target="_blank"
       >
         <span className="download">{text}</span>
-        <i className="fa fa-download download"></i>
+        {text === "download" && <i className="fa fa-download download"></i>}
       </a>
     );
   }
