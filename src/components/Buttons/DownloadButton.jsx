@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./downloadButton.css";
 
-const DownloadButton = ({ buttonStyle, to, downloadLink }) => {
+const DownloadButton = ({ buttonStyle, to, downloadLink, text }) => {
   if (downloadLink) {
     return (
       <a
@@ -11,7 +11,7 @@ const DownloadButton = ({ buttonStyle, to, downloadLink }) => {
         href={downloadLink}
         target="_blank"
       >
-        <span className="download">download</span>
+        <span className="download">{text}</span>
         <i className="fa fa-download download"></i>
       </a>
     );
